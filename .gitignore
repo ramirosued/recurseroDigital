@@ -1,0 +1,16 @@
+# Node.js
+/node_modules
+/backend/node_modules
+/backend/dist
+/backend/.idea
+/backend/.vscode/
+/backend/coverage
+/frontend/recursero-digital/dev-dist
+# Ignorar package-lock.json
+package-lock.json
+
+# Ignorar configuraciones de IDEs
+.vscode/
+.idea
+*.swp
+*.swo

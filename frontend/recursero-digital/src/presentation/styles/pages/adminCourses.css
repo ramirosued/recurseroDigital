@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap');
+
+.admin-courses {
+  padding: 2rem;
+  font-family: 'Fredoka', cursive;
+  background: rgb(231, 237, 239);
+  min-height: 100vh;
+  color: #333;
+}
+
+.courses-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.courses-header h1 {
+  margin: 0;
+  color:  rgba(81, 55, 173, 0.788);
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.add-course-btn {
+  background:  #348267;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  font-family: 'Fredoka', cursive;
+}
+
+.add-course-btn:hover {
+  transform: translateY(-2px);
+}
+
+.courses-filters {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  background:  #34826744;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.filter-group label {
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.filter-group select,
+.filter-group input {
+  padding: 0.5rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 0.5rem;
+  font-family: 'Fredoka', cursive;
+  transition: border-color 0.2s ease;
+}
+
+.filter-group select:focus,
+.filter-group input:focus {
+  outline: none;
+  border-color: #4facfe;
+}
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.course-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.course-card:hover {
+  transform: translateY(-5px);
+}
+
+.course-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.course-header h3 {
+  margin: 0;
+  color: #2d3748;
+  font-size: 1.25rem;
+}
+
+.course-status {
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.course-status.activo {
+  background: #c6f6d5;
+  color: #22543d;
+}
+
+.course-status.inactivo {
+  background: #fed7d7;
+  color: #742a2a;
+}
+
+.course-info {
+  margin-bottom: 1.5rem;
+}
+
+.course-info p {
+  margin: 0.5rem 0;
+  color: #4a5568;
+}
+
+.course-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.view-btn, .edit-btn-cursos, .delete-btn-cursos {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Fredoka', cursive;
+  font-size: 0.875rem;
+}
+
+.view-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.edit-btn-cursos {
+  background:  #348267;
+  color: white;
+}
+
+.delete-btn-cursos {
+  background:#594a8f96;
+  color: white;
+}
+
+.view-btn:hover, .edit-btn-cursos:hover, .delete-btn-cursos:hover {
+  transform: translateY(-1px);
+}
+
+.courses-summary {
+  display: flex;
+  justify-content: space-around;
+ background: linear-gradient(135deg, rgba(30, 58, 138, 0.8) 0%, rgba(59, 130, 246, 0.8) 40%, rgba(99, 102, 241, 0.8) 60%, rgba(91, 33, 182, 0.8) 100%);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+ box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.summary-item {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.summary-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: rgb(255, 255, 255);
+}
+
+.summary-label {
+  font-weight: 600;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+  .admin-courses {
+    padding: 1rem;
+  }
+  
+  .courses-header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  .courses-filters {
+    flex-direction: column;
+  }
+  
+  .courses-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .courses-summary {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}

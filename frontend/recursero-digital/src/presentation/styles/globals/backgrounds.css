@@ -1,0 +1,173 @@
+/* Backgrounds globales reutilizables */
+
+/* Background espacial principal */
+.bg-space-gradient {
+  background: linear-gradient(
+    135deg,
+    #1e3a8a 0%,
+    #3b82f6 20%,
+    #6366f1 40%,
+    #8b5cf6 60%,
+    #7c3aed 80%,
+    #5b21b6 100%
+  );
+}
+
+/* Animación de estrellas reutilizable */
+.bg-stars::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="stars-global" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="white" opacity="0.3"/><circle cx="5" cy="5" r="0.5" fill="white" opacity="0.5"/><circle cx="15" cy="15" r="0.8" fill="white" opacity="0.4"/></pattern></defs><rect width="100" height="100" fill="url(%23stars-global)"/></svg>');
+  pointer-events: none;
+  z-index: 0;
+  animation: twinkle 8s ease-in-out infinite;
+}
+
+/* Clase combinada para aplicar todo junto */
+.bg-space {
+  position: relative;
+}
+
+/* Backgrounds para componentes UI con space-gradient */
+.bg-space-ui {
+  background: linear-gradient(
+    135deg,
+    rgba(30, 58, 138, 0.8) 0%,
+    rgba(59, 130, 246, 0.8) 20%,
+    rgba(99, 102, 241, 0.8) 40%,
+    rgba(139, 92, 246, 0.8) 60%,
+    rgba(124, 58, 237, 0.8) 80%,
+    rgba(91, 33, 182, 0.8) 100%
+  );
+  /* backdrop-filter: blur(20px); */
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Estrellas para componentes UI (más sutil)
+.bg-stars-ui::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="stars-ui" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="white" opacity="0.3"/><circle cx="5" cy="5" r="0.5" fill="white" opacity="0.5"/><circle cx="15" cy="15" r="0.8" fill="white" opacity="0.4"/></pattern></defs><rect width="100" height="100" fill="url(%23stars-ui)"/></svg>');
+  pointer-events: none;
+  z-index: 0;
+  animation: twinkle 8s ease-in-out infinite;
+} */
+
+/* Gradientes para botones activos/hover usando colores del space-gradient */
+.bg-accent-hover {
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.3) 0%,
+    rgba(124, 58, 237, 0.2) 100%
+  );
+}
+
+.bg-accent-active {
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.4) 0%,
+    rgba(124, 58, 237, 0.3) 100%
+  );
+}
+
+/* Estilo para navbar de docente con space-gradient intenso */
+.bg-space-docente {
+  background: linear-gradient(
+    135deg,
+    rgba(30, 58, 138, 0.95) 0%,
+    rgba(59, 130, 246, 0.90) 20%,
+    rgba(99, 102, 241, 0.95) 40%,
+    rgba(139, 92, 246, 0.90) 60%,
+    rgba(124, 58, 237, 0.95) 80%,
+    rgba(91, 33, 182, 0.95) 100%
+  );
+  backdrop-filter: blur(25px);
+  border-top: 2px solid rgba(59, 130, 246, 0.4);
+  box-shadow: 0 -8px 32px rgba(59, 130, 246, 0.3);
+}
+
+.bg-stars-docente::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="stars-docente" x="0" y="0" width="25" height="25" patternUnits="userSpaceOnUse"><circle cx="12" cy="12" r="1.5" fill="%2359a5fa" opacity="0.4"/><circle cx="6" cy="6" r="0.8" fill="%233b82f6" opacity="0.6"/><circle cx="18" cy="18" r="1.2" fill="%2393c5fd" opacity="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23stars-docente)"/></svg>');
+  pointer-events: none;
+  z-index: 0;
+  animation: twinkleDocente 10s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+@keyframes twinkleDocente {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+/* Scrollbars globales reutilizables */
+.scrollbar-space::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollbar-space::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.scrollbar-space::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(139, 92, 246, 0.3);
+}
+
+.scrollbar-space::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+}
+
+/* Estilo para navbar de admin con space-gradient */
+.bg-space-admin {
+  background: linear-gradient(
+    135deg,
+    rgba(30, 58, 138, 0.95) 0%,
+    rgba(59, 130, 246, 0.90) 20%,
+    rgba(99, 102, 241, 0.95) 40%,
+    rgba(139, 92, 246, 0.90) 60%,
+    rgba(124, 58, 237, 0.95) 80%,
+    rgba(91, 33, 182, 0.95) 100%
+  );
+  backdrop-filter: blur(25px);
+  border-top: 2px solid rgba(139, 92, 246, 0.4);
+  box-shadow: 0 -8px 32px rgba(139, 92, 246, 0.3);
+}
+
+.bg-stars-admin::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="stars-admin" x="0" y="0" width="25" height="25" patternUnits="userSpaceOnUse"><circle cx="12" cy="12" r="1.5" fill="%23ffffff" opacity="0.6"/><circle cx="6" cy="6" r="0.8" fill="%23ffffff" opacity="0.8"/><circle cx="18" cy="18" r="1.2" fill="%23ffffff" opacity="0.7"/></pattern></defs><rect width="100" height="100" fill="url(%23stars-admin)"/></svg>');
+  pointer-events: none;
+  z-index: 1;
+  animation: twinkleAdmin 12s ease-in-out infinite;
+}
+
+@keyframes twinkleAdmin {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}

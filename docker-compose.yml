@@ -1,0 +1,65 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=recurseroDigitalDB
+      - DB_USER=admindb
+      - DB_PASSWORD=recursero2025
+      - JWT_SECRET=tu-jwt-secret-super-seguro-local
+      - GEMINI_API_KEY=AIzaSyB2qf_PZfiaW9NuGSODUwTLC-W4LCS13QA
+      - GEMINI_MODEL=gemini-2.5-flash
+    networks:
+      - recursero-network
+    depends_on:
+      - postgres
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:15
+    container_name: postgres-container
+    restart: always
+    environment:
+      POSTGRES_DB: recurseroDigitalDB
+      POSTGRES_USER: admindb
+      POSTGRES_PASSWORD: recursero2025
+      POSTGRES_ROOT_PASSWORD: 123456
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./postgres-init:/docker-entrypoint-initdb.d
+    networks:
+      - recursero-network
+
+  frontend:
+    build:
+      context: ./frontend/recursero-digital
+      dockerfile: Dockerfile
+      args:
+        VITE_API_BASE_URL: http://localhost:3000/api
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    networks:
+      - recursero-network
+    restart: unless-stopped
+
+
+networks:
+  recursero-network:
+    driver: bridge
+
+volumes:
+  backend_node_modules:
+  frontend_node_modules:
+  postgres_data:
+

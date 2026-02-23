@@ -1,0 +1,341 @@
+
+.game-instruction .highlight-text {
+  color: var(--space-yellow);
+  font-weight: 900;
+  text-shadow: 
+    0 0 10px rgba(251, 191, 36, 0.8),
+    0 0 20px rgba(251, 191, 36, 0.5),
+    2px 2px 4px rgba(0, 0, 0, 0.8);
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  letter-spacing: clamp(0.5px, 0.15vw, 1px);
+}
+
+.ordenamiento-game-header {
+  text-align: center;
+  margin-bottom: clamp(0.5rem, 1.5vh, 1rem);
+  padding-top: clamp(50px, 10vh, 80px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: auto;
+}
+
+/* Progress Bar */
+.ordenamiento-progress-container {
+  height: clamp(15px, 2.5vh, 20px);
+  min-height: clamp(15px, 2.5vh, 20px);
+  width: 100%;
+  max-width: clamp(400px, 80vw, 600px);
+  border-radius: clamp(10px, 2vh, 15px);
+  overflow: hidden;
+  border: clamp(2px, 0.4vh, 3px) solid var(--space-yellow);
+  margin: clamp(1rem, 2vh, 1.5rem) auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.ordenamiento-progress-bar {
+  height: 100%;
+  background: linear-gradient(135deg, #10b981 0%, #22c55e 25%, #84cc16 50%, #facc15 75%, #fbbf24 100%);
+  border-radius: clamp(8px, 1.8vh, 13px);
+  transition: width 0.8s ease;
+  box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.3);
+}
+
+/* Dynamic progress bar width - controlled by data attribute */
+.ordenamiento-progress-bar[data-progress] {
+  width: var(--progress-width, 0%);
+}
+
+/* Game Play Area */
+.game-play-area {
+  margin-top: clamp(4px, 1vh, 8px);
+  margin-bottom: 0%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  gap: clamp(15px, 4vh, 30px);
+}
+
+.drop-target {
+  height: clamp(80px, 15vh, 100px);
+  border: clamp(2px, 0.4vh, 3px) dashed var(--space-yellow);
+  border-radius: clamp(12px, 2.5vh, 20px);
+  padding: clamp(10px, 2vh, 15px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  min-width: clamp(300px, 60vw, 500px);
+  gap: clamp(6px, 1.5vh, 10px);
+  box-sizing: border-box;
+  background: var(--paper-gradient);
+}
+
+.drop-hint {
+  color: var(--space-blue);
+  font-size: clamp(0.9rem, 1.8vw, 1.2rem);
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Numbers Section */
+.numbers-section {
+  text-align: center;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.numbers-title {
+  color: var(--space-yellow);
+  margin-bottom: clamp(4px, 1vh, 8px);
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-weight: 700;
+  text-shadow: 2px 2px 0px var(--space-blue);
+}
+
+.ordenamiento-numbers-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(10px, 2.5vw, 20px);
+  align-items: center;
+  min-height: clamp(50px, 10vh, 70px);
+  margin-bottom: clamp(4px, 1vh, 8px);
+  padding: clamp(6px, 1.5vh, 10px);
+}
+
+.ordenamiento-number-box {
+  background: var(--number-gradient);
+  border: clamp(1.5px, 0.3vh, 2px) solid var(--space-yellow);
+  border-radius: clamp(10px, 2vh, 15px);
+  padding: clamp(10px, 2vh, 15px) clamp(15px, 3vw, 25px);
+  cursor: grab;
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+  font-weight: 700;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+  user-select: none;
+  min-height: clamp(40px, 8vh, 50px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.ordenamiento-number-box:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(30, 58, 138, 0.5);
+}
+
+.ordenamiento-number-box:active {
+  cursor: grabbing;
+}
+
+.ordenamiento-number-box.in-target {
+  background: var(--space-green);
+  border-color: var(--space-yellow);
+  align-self: center;
+  margin: 0;
+}
+
+
+.modal {
+  background: var(--main-gradient);
+  border-radius: clamp(12px, 2.5vh, 20px);
+  padding: clamp(1.2rem, 3vh, 2rem);
+  max-width: clamp(350px, 70vw, 500px);
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: modalSlideIn 0.4s ease-out;
+  border: clamp(2px, 0.4vh, 3px) solid var(--space-yellow);
+  text-align: center;
+}
+
+.modal h2 {
+  color: var(--space-yellow);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  margin-bottom: clamp(0.6rem, 1.5vh, 1rem);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.modal p {
+  color: white;
+  font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+  margin-bottom: clamp(1rem, 2vh, 1.5rem);
+}
+
+/* Game Complete */
+.game-complete {
+  text-align: center;
+  padding: clamp(1.5rem, 4vh, 3rem);
+}
+
+.complete-title {
+  color: var(--space-yellow);
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin-bottom: clamp(0.6rem, 1.5vh, 1rem);
+  font-weight: 700;
+  text-shadow: 3px 3px 0px var(--space-blue);
+}
+
+.complete-message,
+.final-score {
+  color: white;
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+  margin-bottom: clamp(0.6rem, 1.5vh, 1rem);
+  font-weight: 500;
+}
+
+.complete-buttons {
+  display: flex;
+  gap: clamp(0.6rem, 1.5vw, 1rem);
+  justify-content: center;
+  align-items: center;
+  margin-top: clamp(1.2rem, 3vh, 2rem);
+}
+
+.restart-button {
+  background: var(--button-gradient);
+  color: white;
+  border: clamp(2px, 0.4vh, 3px) solid var(--space-yellow);
+  padding: clamp(10px, 2vh, 15px) clamp(20px, 4vw, 30px);
+  border-radius: clamp(12px, 2.5vh, 20px);
+  font-size: clamp(0.9rem, 1.8vw, 1.2rem);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 0;
+}
+
+.restart-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(30, 58, 138, 0.5);
+}
+
+/* Animations */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Activity Feedback Modal */
+.activity-feedback-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.activity-feedback-modal {
+  background: var(--main-gradient);
+  border-radius: clamp(12px, 2.5vh, 20px);
+  padding: clamp(1.5rem, 3.5vh, 2.5rem);
+  max-width: clamp(300px, 60vw, 400px);
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  animation: modalSlideIn 0.4s ease-out;
+  text-align: center;
+  border: clamp(2px, 0.4vh, 3px) solid;
+}
+
+.activity-feedback-modal.success {
+  border-color: #4CAF50;
+}
+
+.activity-feedback-modal.error {
+  border-color: #FF6B6B;
+}
+
+.activity-feedback-modal h2 {
+  font-size: clamp(1.5rem, 3.2vw, 2.2rem);
+  margin-bottom: clamp(0.6rem, 1.5vh, 1rem);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.activity-feedback-modal.success h2 {
+  color: #4CAF50;
+}
+
+.activity-feedback-modal.error h2 {
+  color: #FF6B6B;
+}
+
+.activity-feedback-modal p {
+  color: white;
+  font-size: clamp(0.9rem, 1.8vw, 1.2rem);
+  margin-bottom: clamp(1.2rem, 3vh, 2rem);
+  line-height: 1.4;
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #4CAF50, #66BB6A);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #4CAF50, #66BB6A);
+  color: white;
+  border: none;
+  padding: clamp(8px, 1.8vh, 12px) clamp(20px, 4vw, 30px);
+  border-radius: clamp(15px, 3vh, 25px);
+  font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+.btn-success:hover {
+  background: linear-gradient(135deg, #43A047, #5CB860);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}

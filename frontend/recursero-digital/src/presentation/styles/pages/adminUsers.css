@@ -1,0 +1,224 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap');
+
+.admin-users {
+  padding: 2rem;
+  font-family: 'Fredoka', cursive;
+  background: rgb(231, 237, 239);
+  min-height: 100vh;
+  color:  #5236b6;
+}
+
+.users-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.users-header h1 {
+  margin: 0;
+  color:  rgba(81, 55, 173, 0.788);
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.header-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.add-user-btn {
+  background:   #348267;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  font-family: 'Fredoka', cursive;
+}
+
+.add-user-btn:hover {
+  transform: translateY(-2px);
+}
+
+.bulk-upload-btn {
+  background: #FF9800;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  font-family: 'Fredoka', cursive;
+  font-size: 14px;
+}
+
+.bulk-upload-btn:hover {
+  background: #F57C00;
+  transform: translateY(-2px);
+}
+
+.bulk-upload-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.users-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 10px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 10px;
+  border-radius: 1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.tab-btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  background: transparent;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 600;
+  color:  #1e3a8a ;
+  transition: all 0.2s ease;
+  font-family: 'Fredoka', cursive;
+  flex: 1;
+}
+
+.tab-btn:hover {
+  background: rgba(79, 172, 254, 0.1);
+  color: #1e3a8a ;
+}
+
+.tab-btn.active {
+  background: #348267;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.users-table{
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.users-table h2 {
+  margin: 0 0 1.5rem 0;
+  color:  rgba(81, 55, 173, 0.788);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.users-table table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.users-table th,
+.users-table td {
+  padding: 1rem;
+  text-align: left;
+  color: black;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.users-table th {
+  background: #f7fafc;
+  font-weight: 600;
+  color: #348267;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 0.5px;
+}
+
+.users-table tr:hover {
+  background: #f7fafc;
+}
+
+.status {
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status.activo {
+  background: #c6f6d5;
+  color: #22543d;
+}
+
+.status.inactivo {
+  background: #fed7d7;
+  color: #742a2a;
+}
+
+.edit-botn, .delete-botn, .activate-botn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Fredoka', cursive;
+  font-size: 0.875rem;
+  margin-right: 0.5rem;
+}
+
+.edit-botn {
+  background:#348267;
+  color: #ffffff;
+}
+
+.delete-botn, .activate-botn {
+  background: #594a8f8a;
+  color: white;
+}
+
+.edit-botn:hover, .delete-botn:hover, .activate-botn:hover {
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .admin-users {
+    padding: 1rem;
+  }
+  
+  .users-header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  .users-tabs {
+    flex-direction: column;
+  }
+  
+  .users-table {
+    overflow-x: auto;
+  }
+  
+  .users-table table {
+    min-width: 600px;
+  }
+  
+  .edit-btn, .delete-btn {
+    margin-bottom: 0.5rem;
+    width: 100%;
+  }
+}

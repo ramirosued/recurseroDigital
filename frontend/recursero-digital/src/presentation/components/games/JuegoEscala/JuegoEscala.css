@@ -1,0 +1,1053 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Fredoka:wght@300;400;500;600;700&display=swap');
+
+/* Solo variables específicas de este juego que NO están en globals */
+:root {
+    /* Colores específicos para elementos decorativos */
+    --color-primary: var(--space-purple, #7c3aed);
+    --color-secondary: var(--space-blue, #1e3a8a);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.game-hud {
+    position: absolute;
+    top: clamp(1.2rem, 3vh, 2rem);
+    right: clamp(1.2rem, 3vh, 2rem);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(clamp(7px, 1.5vh, 10px));
+    padding: clamp(0.6rem, 1.5vh, 1rem) clamp(0.9rem, 2.25vh, 1.5rem);
+    border-radius: clamp(1.4rem, 3vh, 2rem);
+    border: clamp(1.4px, 0.3vh, 2px) solid #fbbf24;
+    color: #1e40af;
+    font-weight: 700;
+    z-index: 10;
+    box-shadow: 0 clamp(2.8px, 0.6vh, 4px) clamp(8.4px, 1.8vh, 12px) rgba(251, 191, 36, 0.3);
+}
+
+.game-hud span {
+    color: #f59e0b;
+    font-weight: 900;
+}
+
+.game-card {
+    background: rgba(255, 255, 255, 0.95);
+    color: #1e40af;
+    padding: clamp(1.2rem, 3vh, 2rem);
+    border-radius: clamp(1.4rem, 3vh, 2rem);
+    box-shadow: 0 clamp(7px, 1.5vh, 10px) clamp(21px, 4.5vh, 30px) rgba(0, 0, 0, 0.2);
+    position: relative;
+    max-width: clamp(560px, 120vw, 800px);
+    margin: clamp(1.2rem, 3vh, 2rem) auto;
+    border: clamp(2.1px, 0.45vh, 3px) solid #3b82f6;
+    z-index: 5;
+}
+
+.sequence-container {
+    background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%);
+    border: clamp(2.1px, 0.45vh, 3px) solid #0ea5e9;
+    border-radius: clamp(1.05rem, 2.25vh, 1.5rem);
+    padding: clamp(1.2rem, 3vh, 2rem);
+    margin: clamp(1.2rem, 3vh, 2rem) 0;
+    position: relative;
+}
+
+.sequence-title {
+    font-family: var(--font-fredoka);
+    font-size: clamp(1.05rem, 2.1vw, 1.5rem);
+    font-weight: 600;
+    text-align: center;
+    color: var(--color-secondary);
+    margin-bottom: clamp(1.2rem, 3vh, 2rem);
+    text-shadow: clamp(1.4px, 0.3vh, 2px) clamp(1.4px, 0.3vh, 2px) clamp(2.8px, 0.6vh, 4px) rgba(0, 0, 0, 0.1);
+}
+
+.sequence-numbers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(0.6rem, 1.5vw, 1rem);
+    flex-wrap: wrap;
+    margin-bottom: clamp(1.2rem, 3vh, 2rem);
+}
+
+.number-box {
+    width: clamp(56px, 12vw, 80px);
+    height: clamp(56px, 12vw, 80px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: clamp(0.7rem, 1.5vh, 1rem);
+    font-size: clamp(1.05rem, 2.1vw, 1.5rem);
+    font-weight: 700;
+    transition: all 0.3s ease;
+    position: relative;
+    box-shadow: 0 clamp(2.8px, 0.6vh, 4px) clamp(8.4px, 1.8vh, 12px) rgba(0, 0, 0, 0.15);
+}
+
+.number-box.filled {
+    color: white;
+    border: clamp(2.1px, 0.45vh, 3px) solid #1e3a8a;
+}
+
+.number-box.empty {
+    background: linear-gradient(
+        135deg,
+        rgba(139, 92, 246, 0.1) 0%,
+        rgba(124, 58, 237, 0.1) 50%,
+        rgba(91, 33, 182, 0.1) 100%
+    );
+    border: clamp(2.1px, 0.45vh, 3px) dashed #8b5cf6;
+    color: #7c3aed;
+}
+
+.number-input {
+    width: clamp(56px, 12vw, 80px);
+    height: clamp(56px, 12vw, 80px);
+    border: clamp(2.1px, 0.45vh, 3px) solid #8b5cf6;
+    border-radius: clamp(0.7rem, 1.5vh, 1rem);
+    text-align: center;
+    font-size: clamp(1.05rem, 2.1vw, 1.5rem);
+    font-weight: 700;
+    background: linear-gradient(
+        135deg,
+        rgba(139, 92, 246, 0.1) 0%,
+        rgba(124, 58, 237, 0.1) 50%,
+        rgba(91, 33, 182, 0.1) 100%
+    );
+    color: #7c3aed;
+    transition: all 0.3s ease;
+    box-shadow: 0 clamp(2.8px, 0.6vh, 4px) clamp(8.4px, 1.8vh, 12px) rgba(139, 92, 246, 0.3);
+}
+
+.number-input:focus {
+    outline: none;
+    border-color: #7c3aed;
+    box-shadow: 0 0 0 clamp(2.8px, 0.6vh, 4px) rgba(124, 58, 237, 0.2);
+    background: rgba(255, 255, 255, 0.95);
+    color: #1e40af;
+}
+
+.number-input.correct {
+    border-color: #10b981;
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+    color: #065f46;
+}
+
+.number-input.incorrect {
+    border-color: #ef4444;
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+    color: #991b1b;
+}
+
+.anterior-posterior-container {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: clamp(1.2rem, 3vw, 2rem);
+    align-items: center;
+    margin: clamp(1.2rem, 3vh, 2rem) 0;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    padding: clamp(1.2rem, 3vh, 2rem);
+    border-radius: clamp(1.05rem, 2.25vh, 1.5rem);
+    border: clamp(2.1px, 0.45vh, 3px) solid #0ea5e9;
+}
+
+.anterior-section,
+.posterior-section {
+    text-align: center;
+}
+
+.section-label {
+    font-size: clamp(0.7rem, 1.4vw, 1rem);
+    font-weight: 600;
+    color: #0c4a6e;
+    margin-bottom: clamp(0.6rem, 1.5vh, 1rem);
+    text-transform: uppercase;
+    letter-spacing: clamp(0.7px, 0.15vw, 1px);
+}
+
+.base-number {
+    width: clamp(70px, 15vw, 100px);
+    height: clamp(70px, 15vw, 100px);
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    color: white;
+    border-radius: clamp(1.05rem, 2.25vh, 1.5rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(1.4rem, 2.8vw, 2rem);
+    font-weight: 900;
+    box-shadow: 0 clamp(5.6px, 1.2vh, 8px) clamp(14px, 3vh, 20px) rgba(139, 92, 246, 0.4);
+    border: clamp(2.1px, 0.45vh, 3px) solid var(--color-primary);
+    position: relative;
+}
+
+.base-number::before {
+    content: '';
+    position: absolute;
+    top: clamp(-3.5px, -0.75vh, -5px);
+    left: clamp(-3.5px, -0.75vh, -5px);
+    right: clamp(-3.5px, -0.75vh, -5px);
+    bottom: clamp(-3.5px, -0.75vh, -5px);
+    background: linear-gradient(45deg, #fbbf24, #f59e0b);
+    border-radius: clamp(1.05rem, 2.25vh, 1.5rem);
+    z-index: -1;
+}
+
+/* Clase base para botones */
+.btn-base {
+    padding: clamp(0.6rem, 1.5vh, 1rem) clamp(1.2rem, 3vh, 2rem);
+    border: none;
+    border-radius: clamp(1.4rem, 3vh, 2rem);
+    font-weight: 700;
+    font-size: clamp(0.77rem, 1.54vw, 1.1rem);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: clamp(0.7px, 0.15vw, 1px);
+    position: relative;
+    overflow: hidden;
+    font-family: var(--font-comic);
+    box-shadow: var(--shadow-light);
+}
+
+.btn-base:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-medium);
+}
+
+
+.btn-start {
+    background: var(--main-gradient);
+}
+
+.btn-check {
+    background: var(--gradient-success);
+}
+
+.btn-hint {
+    background: var(--gradient-warning);
+}
+
+.level-grid {
+    grid-template-columns: repeat(auto-fit, minmax(clamp(196px, 42vw, 280px), 1fr));
+    max-width: clamp(840px, 180vw, 1200px);
+    margin: clamp(1.2rem, 3vh, 2rem) auto;
+    padding: 0 clamp(1.2rem, 3vh, 2rem);
+}
+
+.level-btn .level-operation {
+    font-size: clamp(0.63rem, 1.26vw, 0.9rem);
+    font-weight: 600;
+    color: var(white);
+    margin-top: clamp(0.15rem, 0.375vh, 0.25rem);
+    opacity: 0.9;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: clamp(0.6rem, 1.5vh, 1rem);
+}
+
+.modal-content {
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: clamp(1.4rem, 3vh, 2rem);
+    padding: clamp(1.2rem, 3vh, 2rem);
+    max-width: clamp(350px, 75vw, 500px);
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 clamp(14px, 3vh, 20px) clamp(35px, 7.5vh, 50px) rgba(0, 0, 0, 0.3);
+    position: relative;
+    border: clamp(2.1px, 0.45vh, 3px) solid #3b82f6;
+}
+
+.modal-content.congrats {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border-color: #f59e0b;
+}
+
+.feedback-correct {
+    color: #059669;
+}
+
+.feedback-incorrect {
+    color: #dc2626;
+}
+
+.hint-box {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border-left: clamp(4.2px, 0.9vh, 6px) solid #f59e0b;
+    padding: clamp(0.9rem, 2.25vh, 1.5rem);
+    border-radius: clamp(0.7rem, 1.5vh, 1rem);
+    margin: clamp(0.6rem, 1.5vh, 1rem) 0;
+    border: clamp(2.1px, 0.45vh, 3px) solid #f3d078;
+    box-shadow: 0 clamp(2.8px, 0.6vh, 4px) clamp(8.4px, 1.8vh, 12px) rgba(245, 158, 11, 0.3);
+}
+
+.hint-title {
+    font-weight: 700;
+    color: #92400e;
+    margin-bottom: clamp(0.3rem, 0.75vh, 0.5rem);
+    font-size: clamp(0.77rem, 1.54vw, 1.1rem);
+}
+
+.hint-text {
+    color: #a16207;
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+.progress-indicator {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: clamp(1.4rem, 3vh, 2rem);
+    padding: clamp(0.6rem, 1.5vh, 1rem) clamp(1.2rem, 3vh, 2rem);
+    margin-bottom: clamp(1.2rem, 3vh, 2rem);
+    display: inline-block;
+    color: #1e40af;
+    font-weight: 700;
+    border: clamp(2.1px, 0.45vh, 3px) solid #3b82f6;
+    box-shadow: 0 clamp(2.8px, 0.6vh, 4px) clamp(8.4px, 1.8vh, 12px) rgba(59, 130, 246, 0.3);
+}
+
+.control-buttons {
+    display: flex;
+    justify-content: center;
+    gap: clamp(0.6rem, 1.5vw, 1rem);
+    margin-top: clamp(1.2rem, 3vh, 2rem);
+    flex-wrap: wrap;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(2deg); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.float {
+    animation: float 3s ease-in-out infinite;
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+.slide-in {
+    animation: slideIn 0.6s ease-out;
+}
+
+@media (max-width: 768px) {
+    .game-hud {
+        position: relative;
+        top: auto;
+        right: auto;
+        margin-bottom: clamp(1.2rem, 3vh, 2rem);
+        font-size: clamp(0.63rem, 1.26vw, 0.9rem);
+    }
+    
+    .header-controls {
+        position: relative;
+        top: auto;
+        left: auto;
+        margin-bottom: clamp(1.2rem, 3vh, 2rem);
+        justify-content: center;
+    }
+    
+    .game-card {
+        margin: clamp(0.6rem, 1.5vh, 1rem);
+        padding: clamp(0.9rem, 2.25vh, 1.5rem);
+    }
+    
+    .sequence-numbers {
+        gap: clamp(0.3rem, 0.75vw, 0.5rem);
+    }
+    
+    .number-box,
+    .number-input {
+        width: clamp(42px, 9vw, 60px);
+        height: clamp(42px, 9vw, 60px);
+        font-size: clamp(0.84rem, 1.68vw, 1.2rem);
+    }
+    
+    .base-number {
+        width: clamp(56px, 12vw, 80px);
+        height: clamp(56px, 12vw, 80px);
+        font-size: clamp(1.05rem, 2.1vw, 1.5rem);
+    }
+    
+    .anterior-posterior-container {
+        grid-template-columns: 1fr;
+        gap: clamp(0.9rem, 2.25vw, 1.5rem);
+        text-align: center;
+    }
+    
+    .level-grid {
+        grid-template-columns: 1fr;
+        gap: clamp(0.6rem, 1.5vw, 1rem);
+        padding: 0 clamp(0.6rem, 1.5vh, 1rem);
+    }
+    
+    .lighthouse {
+        right: 10%;
+        width: clamp(21px, 4.5vw, 30px);
+        height: clamp(42px, 9vh, 60px);
+    }
+    
+    .house {
+        left: 5%;
+        width: clamp(31.5px, 6.75vw, 45px);
+        height: clamp(28px, 6vh, 40px);
+    }
+}
+
+@media (max-width: 480px) {
+    .btn {
+        padding: clamp(0.48rem, 1.2vh, 0.8rem) clamp(0.9rem, 2.25vh, 1.5rem);
+        font-size: clamp(0.7rem, 1.4vw, 1rem);
+    }
+    
+    .sequence-title {
+        font-size: clamp(0.91rem, 1.82vw, 1.3rem);
+    }
+    
+    .level-title {
+        font-size: clamp(0.91rem, 1.82vw, 1.3rem);
+    }
+    
+    .modal-content {
+        padding: clamp(0.9rem, 2.25vh, 1.5rem);
+        margin: clamp(0.6rem, 1.5vh, 1rem);
+    }
+    
+    .control-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* FeedbackModal specific styles */
+.feedback-icon {
+    font-size: clamp(2.1rem, 4.2vw, 3rem);
+    margin-bottom: clamp(0.6rem, 1.5vh, 1rem);
+}
+
+.feedback-title {
+    font-size: clamp(1.05rem, 2.1vw, 1.5rem);
+    font-weight: 700;
+    margin-bottom: clamp(0.6rem, 1.5vh, 1rem);
+    color: #1e40af;
+}
+
+.feedback-explanation {
+    font-size: clamp(0.77rem, 1.54vw, 1.1rem);
+    margin-bottom: clamp(1.2rem, 3vh, 2rem);
+    line-height: 1.5;
+    color: #374151;
+}
+
+.feedback-actions {
+    display: flex;
+    gap: clamp(0.6rem, 1.5vw, 1rem);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-main-gradient {
+    color: white;
+    border: clamp(2.1px, 0.45vh, 3px) solid #1e3a8a;
+    transition: all 0.3s ease;
+}
+
+.btn-main-gradient:hover {
+    transform: translateY(clamp(-1.4px, -0.3vh, -2px));
+    box-shadow: 0 clamp(5.6px, 1.2vh, 8px) clamp(16.8px, 3.6vh, 24px) rgba(30, 58, 138, 0.4);
+}
+
+/* Aplicar la clase a botones específicos */
+.btn-close,
+.btn-success,
+.btn-play-again,
+.btn-back-to-games {
+    font-weight: 700;
+    padding: clamp(0.6rem, 1.5vh, 1rem) clamp(1.2rem, 3vh, 2rem);
+    border-radius: clamp(0.7rem, 1.5vh, 1rem);
+    cursor: pointer;
+    font-family: var(--font-comic);
+    transition: all 0.3s ease;
+}
+
+.congrats-header {
+    text-align: center;
+    margin-bottom: clamp(1.2rem, 3vh, 2rem);
+}
+
+.congrats-icon {
+    font-size: clamp(2.8rem, 5.6vw, 4rem);
+    margin-bottom: clamp(0.6rem, 1.5vh, 1rem);
+}
+
+.congrats-title {
+    font-size: clamp(1.4rem, 2.8vw, 2rem);
+    font-weight: 700;
+    color: #1e40af;
+    margin-bottom: clamp(0.6rem, 1.5vh, 1rem);
+    font-family: 'Fredoka', sans-serif;
+}
+
+.congrats-subtitle {
+    font-size: clamp(0.84rem, 1.68vw, 1.2rem);
+    color: #374151;
+    font-weight: 600;
+}
+
+.score-summary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: clamp(1.2rem, 3vh, 2rem);
+}
+
+.score-circle {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    color: white;
+    width: clamp(84px, 18vw, 120px);
+    height: clamp(84px, 18vw, 120px);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: clamp(1.2rem, 3vh, 2rem);
+    box-shadow: 0 clamp(5.6px, 1.2vh, 8px) clamp(14px, 3vh, 20px) rgba(59, 130, 246, 0.4);
+}
+
+.score-percentage {
+    font-size: clamp(1.4rem, 2.8vw, 2rem);
+    font-weight: 900;
+    line-height: 1;
+}
+
+.score-fraction {
+    font-size: clamp(0.7rem, 1.4vw, 1rem);
+    font-weight: 600;
+    opacity: 0.9;
+}
+
+.level-info {
+    text-align: center;
+    width: 100%;
+}
+
+.level-info h3 {
+    color: #1e40af;
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(1.05rem, 2.1vw, 1.5rem);
+    font-weight: 700;
+    margin-bottom: clamp(0.6rem, 1.5vh, 1rem);
+}
+
+.level-passed-info {
+    background: linear-gradient(135deg, rgba(30, 58, 138, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+    border: clamp(1.4px, 0.3vh, 2px) solid #1e3a8a;
+    border-radius: clamp(0.7rem, 1.5vh, 1rem);
+    padding: clamp(0.6rem, 1.5vh, 1rem);
+    margin-bottom: clamp(0.6rem, 1.5vh, 1rem);
+}
+
+.level-passed-text {
+    color: #1e3a8a;
+    font-weight: 700;
+    margin: 0;
+}
+
+.level-unlocked-text {
+    color: #1e3a8a;
+    font-weight: 600;
+    margin: clamp(0.3rem, 0.75vh, 0.5rem) 0 0 0;
+    font-size: clamp(0.63rem, 1.26vw, 0.9rem);
+}
+
+.level-failed-info {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+    border: clamp(1.4px, 0.3vh, 2px) solid #8b5cf6;
+    border-radius: clamp(0.7rem, 1.5vh, 1rem);
+    padding: clamp(0.6rem, 1.5vh, 1rem);
+    margin-bottom: clamp(0.6rem, 1.5vh, 1rem);
+}
+
+.level-failed-text {
+    color: #92400e;
+    font-weight: 700;
+    margin: 0;
+}
+
+.level-retry-text {
+    color: #92400e;
+    font-weight: 600;
+    margin: clamp(0.3rem, 0.75vh, 0.5rem) 0 0 0;
+    font-size: clamp(0.63rem, 1.26vw, 0.9rem);
+}
+
+.congrats-actions {
+    display: flex;
+    justify-content: center;
+    gap: clamp(0.6rem, 1.5vw, 1rem);
+    flex-wrap: wrap;
+}
+
+.btn-play-again,
+.btn-back-to-games {
+    box-shadow: 0 clamp(4.2px, 0.9vh, 6px) clamp(14px, 3vh, 20px) rgba(124, 58, 237, 0.4);
+}
+
+.header-info {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.6rem, 1.5vw, 1rem);
+}
+
+.game-level-title {
+    font-size: clamp(1.4rem, 2.8vw, 2rem);
+    color: var(--color-primary);
+    font-family: var(--font-fredoka);
+    font-weight: 900;
+    text-shadow: clamp(1.4px, 0.3vh, 2px) clamp(1.4px, 0.3vh, 2px) clamp(2.8px, 0.6vh, 4px) rgba(0, 0, 0, 0.1);
+    margin: 0;
+}
+
+/* Tarjeta de pregunta especifica Juego Escala */
+.escala-question-card {
+    background: var(--paper-gradient);
+    padding: clamp(1rem, 2vw, 2rem);
+    border-radius: 1rem;
+    border: 3px dashed var(--space-yellow);
+    text-align: center;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1rem, 2vh, 1.5rem);
+}
+
+.question-counter {
+    font-size: clamp(0.84rem, 1.68vw, 1.2rem);
+    color: var(--color-secondary);
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.9);
+    padding: clamp(0.3rem, 0.75vh, 0.5rem) clamp(0.6rem, 1.5vh, 1rem);
+    border-radius: clamp(0.7rem, 1.5vh, 1rem);
+    border: clamp(1.4px, 0.3vh, 2px) solid #3b82f6;
+    display: inline-block;
+    width: auto;
+}
+
+.progress-section {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.6rem, 1.5vw, 1rem);
+}
+
+.score-display {
+    font-size: clamp(0.77rem, 1.54vw, 1.1rem);
+    color: #0c4a6e;
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.9);
+    padding: clamp(0.3rem, 0.75vh, 0.5rem) clamp(0.6rem, 1.5vh, 1rem);
+    border-radius: clamp(0.7rem, 1.5vh, 1rem);
+    border: clamp(1.4px, 0.3vh, 2px) solid #10b981;
+    display: inline-block;
+    width: auto;
+}
+
+.btn-back {
+    background: var(--gradient-red);
+    border: clamp(2.1px, 0.45vh, 3px) solid #b91c1c;
+    color: white;
+    padding: clamp(0.45rem, 1.125vh, 0.75rem) clamp(0.9rem, 2.25vh, 1.5rem);
+    border-radius: clamp(0.7rem, 1.5vh, 1rem);
+    font-size: clamp(0.7rem, 1.4vw, 1rem);
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-back:hover {
+    transform: translateY(clamp(-1.4px, -0.3vh, -2px));
+    box-shadow: 0 clamp(2.8px, 0.6vh, 4px) clamp(8.4px, 1.8vh, 12px) rgba(239, 68, 68, 0.4);
+}
+
+.question-container {
+    display: flex;
+    justify-content: center;
+    padding: 0 clamp(1.2rem, 3vh, 2rem);
+    position: relative;
+    z-index: 5;
+}
+
+.question-content {
+    background: rgba(255, 255, 255, 0.95);
+    color: #1e40af;
+    padding: clamp(1.2rem, 3vh, 2rem);
+    border-radius: clamp(1.4rem, 3vh, 2rem);
+    box-shadow: 0 clamp(7px, 1.5vh, 10px) clamp(21px, 4.5vh, 30px) rgba(0, 0, 0, 0.2);
+    position: relative;
+    max-width: clamp(560px, 120vw, 800px);
+    width: 100%;
+    border: clamp(2.1px, 0.45vh, 3px) solid #3b82f6;
+}
+
+.anterior-posterior-question {
+    margin-bottom: clamp(1.2rem, 3vh, 2rem);
+}
+
+.question-title {
+    font-family: var(--font-fredoka);
+    font-size: clamp(1.26rem, 2.52vw, 1.8rem);
+    font-weight: 600;
+    text-align: center;
+    color: var(--color-secondary);
+    margin-bottom: clamp(1.2rem, 3vh, 2rem);
+    text-shadow: clamp(1.4px, 0.3vh, 2px) clamp(1.4px, 0.3vh, 2px) clamp(2.8px, 0.6vh, 4px) rgba(0, 0, 0, 0.1);
+}
+
+.escala-sequence-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(0.3rem, 1vw, 0.5rem);
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    /* padding: 0.5rem; */
+}
+
+.context-number {
+    font-size: clamp(0.84rem, 1.68vw, 1.2rem);
+    color: #6b7280;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.7);
+    padding: clamp(0.36rem, 0.9vh, 0.6rem) clamp(0.48rem, 1.2vh, 0.8rem);
+    border-radius: clamp(0.56rem, 1.2vh, 0.8rem);
+    border: clamp(1.4px, 0.3vh, 2px) solid #d1d5db;
+}
+
+.missing-anterior {
+    font-size: clamp(1.26rem, 2.52vw, 1.8rem);
+    color: #dc2626;
+    font-weight: 900;
+    background: rgba(255, 255, 255, 0.9);
+    padding: clamp(0.18rem, 0.45vh, 0.3rem);
+    border-radius: clamp(0.7rem, 1.5vh, 1rem);
+    border: clamp(2.1px, 0.45vh, 3px) dashed #dc2626;
+    min-width: clamp(35px, 7.5vw, 50px);
+    max-width: clamp(56px, 12vw, 80px);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.missing-anterior .sequence-input {
+    width: 100%;
+    max-width: clamp(49px, 10.5vw, 70px);
+    border: none;
+    background: transparent;
+    font-size: clamp(1.26rem, 2.52vw, 1.8rem);
+    color: #dc2626;
+    font-weight: 900;
+    text-align: center;
+    outline: none;
+    padding: clamp(0.12rem, 0.3vh, 0.2rem);
+}
+
+.missing-anterior .sequence-input::placeholder {
+    color: #dc2626;
+    opacity: 0.5;
+}
+
+.missing-anterior .sequence-input:focus {
+    background: rgba(220, 38, 38, 0.1);
+}
+
+.missing-anterior .sequence-input.error {
+    background: rgba(239, 68, 68, 0.2);
+}
+
+.missing-anterior .sequence-input.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.central-number {
+    font-size: clamp(1.54rem, 3.08vw, 2.2rem);
+    color: #1e40af;
+    font-weight: 900;
+    background: rgba(255, 255, 255, 0.9);
+    padding: clamp(0.72rem, 1.8vh, 1.2rem) clamp(0.9rem, 2.25vh, 1.5rem);
+    border-radius: clamp(1.05rem, 2.25vh, 1.5rem);
+    border: clamp(2.1px, 0.45vh, 3px) solid #3b82f6;
+    min-width: clamp(49px, 10.5vw, 70px);
+    text-align: center;
+}
+
+.missing-posterior {
+    font-size: clamp(1.26rem, 2.52vw, 1.8rem);
+    color: #16a34a;
+    font-weight: 900;
+    background: rgba(255, 255, 255, 0.9);
+    padding: clamp(0.18rem, 0.45vh, 0.3rem);
+    border-radius: clamp(0.7rem, 1.5vh, 1rem);
+    border: clamp(2.1px, 0.45vh, 3px) dashed #16a34a;
+    min-width: clamp(35px, 7.5vw, 50px);
+    max-width: clamp(56px, 12vw, 80px);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.missing-posterior .sequence-input {
+    width: 100%;
+    max-width: clamp(49px, 10.5vw, 70px);
+    border: none;
+    background: transparent;
+    font-size: clamp(1.26rem, 2.52vw, 1.8rem);
+    color: #16a34a;
+    font-weight: 900;
+    text-align: center;
+    outline: none;
+    padding: clamp(0.12rem, 0.3vh, 0.2rem);
+}
+
+.missing-posterior .sequence-input::placeholder {
+    color: #16a34a;
+    opacity: 0.5;
+}
+
+.missing-posterior .sequence-input:focus {
+    background: rgba(22, 163, 74, 0.1);
+}
+
+.missing-posterior .sequence-input.error {
+    background: rgba(239, 68, 68, 0.2);
+}
+
+.missing-posterior .sequence-input.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.anterior-posterior-inputs {
+    display: flex;
+    justify-content: center;
+    gap: clamp(0.9rem, 4vw, 3rem);
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.input-group {
+    text-align: center;
+}
+
+.input-label {
+    font-size: clamp(0.84rem, 1.68vw, 1.2rem);
+    font-weight: 700;
+    margin-bottom: clamp(0.6rem, 1.5vh, 1rem);
+    display: block;
+}
+
+.input-label.anterior {
+    color: #dc2626;
+}
+
+.input-label.posterior {
+    color: #16a34a;
+}
+
+.answer-input {
+    font-size: clamp(1.05rem, 2.1vw, 1.5rem);
+    padding: clamp(0.6rem, 1.5vh, 1rem);
+    border-radius: clamp(0.7rem, 1.5vh, 1rem);
+    text-align: center;
+    width: clamp(84px, 18vw, 120px);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    transition: all 0.3s ease;
+}
+
+.answer-input.anterior {
+    border: clamp(2.1px, 0.45vh, 3px) solid #dc2626;
+}
+
+.answer-input.posterior {
+    border: clamp(2.1px, 0.45vh, 3px) solid #16a34a;
+}
+
+.answer-input.error {
+    border-color: #ef4444;
+    background-color: #fef2f2;
+}
+
+.answer-input.disabled {
+    background-color: #f3f4f6;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.answer-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 clamp(2.8px, 0.6vh, 4px) rgba(124, 58, 237, 0.2);
+    background: rgba(255, 255, 255, 0.95);
+    color: #1e40af;
+}
+
+.input-error {
+    color: #dc2626;
+    font-size: clamp(0.6125rem, 1.225vw, 0.875rem);
+    margin-top: clamp(0.15rem, 0.375vh, 0.25rem);
+}
+
+.game-instructions {
+    background: linear-gradient(135deg, #e0f2fe 0%, #b3e5fc 100%);
+    border: clamp(2.1px, 0.45vh, 3px) solid #0288d1;
+    border-radius: clamp(0.7rem, 1.5vh, 1rem);
+    padding: clamp(0.9rem, 2.25vh, 1.5rem);
+    margin: clamp(1.2rem, 3vh, 2rem) auto;
+    max-width: clamp(420px, 90vw, 600px);
+    text-align: center;
+    box-shadow: 0 clamp(2.8px, 0.6vh, 4px) clamp(8.4px, 1.8vh, 12px) rgba(0, 0, 0, 0.1);
+}
+
+.instructions-title {
+    font-size: clamp(0.84rem, 1.68vw, 1.2rem);
+    font-weight: 700;
+    color: #0277bd;
+    margin-bottom: clamp(0.3rem, 0.75vh, 0.5rem);
+}
+
+.instructions-description {
+    font-size: clamp(0.7rem, 1.4vw, 1rem);
+    color: #01579b;
+    font-weight: 600;
+}
+
+.instructions-help {
+    font-size: clamp(0.6125rem, 1.225vw, 0.875rem);
+    color: #01579b;
+    margin-top: clamp(0.3rem, 0.75vh, 0.5rem);
+}
+
+.game-actions {
+    text-align: center;
+    margin-top: clamp(1.2rem, 3vh, 2rem);
+    position: relative;
+    z-index: 999;
+}
+
+.btn-submit {
+    border: clamp(2.1px, 0.45vh, 3px) solid #047857;
+    color: white;
+    padding: clamp(0.45rem, 1.125vh, 0.75rem) clamp(1.2rem, 3vh, 2rem);
+    border-radius: clamp(0.7rem, 1.5vh, 1rem);
+    font-size: clamp(0.84rem, 1.68vw, 1.2rem);
+    font-weight: 700;
+    position: relative;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.btn-submit.enabled {
+    background: var(--gradient-green);
+    cursor: pointer;
+    opacity: 1;
+}
+
+.btn-submit.disabled {
+    background: linear-gradient(135deg, #9ca3af 0%, #6b7280 100%);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.btn-submit.enabled:hover {
+    transform: translateY(clamp(-1.4px, -0.3vh, -2px));
+    box-shadow: 0 clamp(4.2px, 0.9vh, 6px) clamp(14px, 3vh, 20px) rgba(16, 185, 129, 0.4);
+}
+
+.error-notification {
+    position: fixed;
+    top: clamp(14px, 3vh, 20px);
+    right: clamp(14px, 3vh, 20px);
+    background: #fef3c7;
+    border: clamp(1.4px, 0.3vh, 2px) solid #f59e0b;
+    border-radius: clamp(0.35rem, 0.75vh, 0.5rem);
+    padding: clamp(0.6rem, 1.5vh, 1rem);
+    z-index: 9999;
+    max-width: clamp(210px, 45vw, 300px);
+}
+
+.error-notification-text {
+    color: #92400e;
+    font-weight: 600;
+}
+
+.error-notification-close {
+    margin-top: clamp(0.3rem, 0.75vh, 0.5rem);
+    background: #f59e0b;
+    color: white;
+    border: none;
+    border-radius: clamp(0.175rem, 0.375vh, 0.25rem);
+    padding: clamp(0.15rem, 0.375vh, 0.25rem) clamp(0.3rem, 0.75vh, 0.5rem);
+    font-size: clamp(0.6125rem, 1.225vw, 0.875rem);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.error-notification-close:hover {
+    background: #d97706;
+}
+
+
+/* Contenedores específicos de JuegoEscala */
+.escala-game-content {
+    min-height: 100vh;
+    height: 100%;
+}
+
+.escala-game-play-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: clamp(0.6rem, 2vh, 2rem);
+}

@@ -1,0 +1,953 @@
+/* Estilos para DashboardStats */
+
+.dashboard-stats {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+/* Estados de carga */
+.dashboard-stats.loading,
+.dashboard-stats.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+}
+
+.loading-spinner {
+  text-align: center;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e5e7eb;
+  border-top: 4px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-message {
+  text-align: center;
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid #fecaca;
+  color: #e74c3c;
+}
+
+.error-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.error-message button {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+/* Header */
+.stats-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.stats-header h2 {
+  font-size: 2.5rem;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.stats-header p {
+  color: #ffffff;
+  font-size: 1.125rem;
+}
+
+/* Métricas principales */
+.main-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.metric-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.metric-card:hover {
+  box-shadow: 0 25px 70px rgba(16, 185, 129, 0.6);
+  border-color: rgba(16, 185, 129, 0.5);
+}
+
+.metric-icon {
+  font-size: 3rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.metric-card.students .metric-icon {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+}
+
+.metric-card.average-score .metric-icon {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.metric-card.time .metric-icon {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+.metric-content h3 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.metric-content p {
+  color: #ffffff;
+  font-size: 1.125rem;
+  margin: 0.25rem 0;
+}
+
+.metric-detail {
+  color: #d1d5db;
+  font-size: 0.875rem;
+}
+
+/* Distribución de juegos */
+.games-distribution,
+.difficulty-analysis,
+.weekly-progress,
+.top-students-section,
+.support-needed-section,
+.difficulty-section,
+.time-metrics-section {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  margin-bottom: 2rem;
+}
+
+.games-distribution h3,
+.difficulty-analysis h3,
+.weekly-progress h3,
+.top-students-section h3,
+.support-needed-section h3,
+.difficulty-section h3,
+.time-metrics-section h3 {
+  color: #ffffff;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.section-description {
+  color: #d1d5db;
+  font-size: 0.875rem;
+  margin-bottom: 1.5rem;
+}
+
+.game-bar {
+  display: grid;
+  grid-template-columns: 200px 1fr 140px;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.75rem 0;
+}
+
+.game-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.game-name {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.game-count {
+  color: #d1d5db;
+  font-size: 0.875rem;
+}
+
+.progress-bar {
+  background: #f3f4f6;
+  height: 12px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.3s ease;
+}
+
+.progress-fill.ordenamiento {
+  background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+}
+
+.progress-fill.escritura {
+  background: linear-gradient(90deg, #10b981, #059669);
+}
+
+.progress-fill.descomposicion {
+  background: linear-gradient(90deg, #f59e0b, #d97706);
+}
+
+.progress-fill.escala {
+  background: linear-gradient(90deg, #8b5cf6, #7c3aed);
+}
+
+.progress-fill.calculos {
+  background: linear-gradient(90deg, #ec4899, #db2777);
+}
+
+.progress-fill.estudiante {
+  background: linear-gradient(90deg, #fbbf24, #f59e0b);
+}
+
+.percentage {
+  font-weight: 600;
+  color: #ffffff;
+  text-align: right;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Top 5 Estudiantes - Gráfico de Barras Verticales */
+.top-students-chart {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  gap: 1rem;
+  min-height: 300px;
+  padding: 2rem 1rem 1rem;
+}
+
+.top-student-bar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  max-width: 150px;
+}
+
+.student-bar-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.student-rank-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fbbf24;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.student-rank-number.support {
+  color: #ef4444;
+}
+
+.student-name-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.student-full-name {
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 120px;
+}
+
+.student-username {
+  color: #d1d5db;
+  font-size: 0.75rem;
+}
+
+.vertical-bar-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 200px;
+  position: relative;
+}
+
+.vertical-bar-container {
+  width: 60px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px 8px 0 0;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.vertical-bar-fill {
+  width: 100%;
+  border-radius: 8px 8px 0 0;
+  transition: height 0.5s ease;
+  position: relative;
+  min-height: 4px;
+}
+
+.vertical-bar-fill.estudiante {
+  background: linear-gradient(180deg, #fbbf24 0%, #f59e0b 100%);
+  box-shadow: 0 -4px 12px rgba(251, 191, 36, 0.4);
+}
+
+.vertical-bar-fill.estudiante::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, transparent 100%);
+  border-radius: 8px 8px 0 0;
+}
+
+.vertical-bar-fill.support-needed {
+  background: linear-gradient(180deg, #ef4444 0%, #dc2626 100%);
+  box-shadow: 0 -4px 12px rgba(239, 68, 68, 0.4);
+}
+
+.vertical-bar-fill.support-needed::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, transparent 100%);
+  border-radius: 8px 8px 0 0;
+}
+
+.vertical-bar-percentage {
+  margin-top: 0.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* Actividades con Mayor Dificultad - Badges */
+.difficulty-badges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  padding: 1rem 0;
+}
+
+.difficulty-badge-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+}
+
+.difficulty-badge-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(239, 68, 68, 0.3);
+  border-color: rgba(239, 68, 68, 0.4);
+}
+
+.badge-rank {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+  font-weight: 700;
+  font-size: 0.875rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4);
+}
+
+.difficulty-badge-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.difficulty-badge-circle::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  opacity: 0.5;
+}
+
+.difficulty-badge-circle:hover {
+  transform: scale(1.1);
+}
+
+.difficulty-badge-circle.ordenamiento {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+}
+
+.difficulty-badge-circle.escritura {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.difficulty-badge-circle.descomposicion {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+.difficulty-badge-circle.escala {
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+}
+
+.difficulty-badge-circle.calculos {
+  background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+}
+
+.badge-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 1;
+}
+
+.badge-label {
+  font-size: 0.625rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  position: relative;
+  z-index: 1;
+}
+
+.badge-game-info {
+  margin-top: 0.5rem;
+}
+
+.badge-game-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 0.5rem 0;
+}
+
+.badge-game-stats {
+  font-size: 0.75rem;
+  color: #d1d5db;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Métricas de Tiempo - Gauges Semicirculares */
+.time-gauge-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  padding: 2rem 1rem;
+}
+
+.time-gauge-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.time-gauge-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(59, 130, 246, 0.3);
+  border-color: rgba(59, 130, 246, 0.4);
+}
+
+.gauge-container {
+  position: relative;
+  width: 100%;
+  max-width: 200px;
+  height: 120px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gauge-svg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.gauge-stroke.ordenamiento {
+  stroke: url(#gauge-gradient-ordenamiento);
+}
+
+.gauge-stroke.escritura {
+  stroke: url(#gauge-gradient-escritura);
+}
+
+.gauge-stroke.descomposicion {
+  stroke: url(#gauge-gradient-descomposicion);
+}
+
+.gauge-stroke.escala {
+  stroke: url(#gauge-gradient-escala);
+}
+
+.gauge-stroke.calculos {
+  stroke: url(#gauge-gradient-calculos);
+}
+
+.gauge-content {
+  position: absolute;
+  bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+
+.gauge-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.gauge-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.gauge-game-info {
+  width: 100%;
+}
+
+.gauge-game-name {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 1rem 0;
+}
+
+.gauge-stats {
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.gauge-stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.gauge-stat-item .stat-label {
+  font-size: 0.75rem;
+  color: #d1d5db;
+  font-weight: 500;
+}
+
+.gauge-stat-item .stat-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* Detalles adicionales para dificultad y tiempo */
+.game-details-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  min-width: 120px;
+}
+
+.difficulty-value,
+.time-value {
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 0.875rem;
+}
+
+.difficulty-details,
+.time-details {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.difficulty-detail-item,
+.time-detail-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  color: #d1d5db;
+  font-size: 0.875rem;
+}
+
+.detail-label {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.detail-value {
+  color: #d1d5db;
+}
+
+/* Análisis de dificultad */
+.difficulty-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.difficulty-card {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.difficulty-card h4 {
+  color: #ffffff;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.difficulty-levels .level {
+  display: grid;
+  grid-template-columns: 60px 1fr 50px;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.level span:first-child {
+  font-size: 0.875rem;
+  color: #d1d5db;
+  font-weight: 500;
+}
+
+.level-bar {
+  background: #f3f4f6;
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.level-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.level span:last-child {
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 0.875rem;
+  text-align: right;
+}
+
+/* Progreso semanal */
+.progress-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.week-bar {
+  display: grid;
+  grid-template-columns: 120px 1fr 60px;
+  align-items: center;
+  gap: 1rem;
+}
+
+.week-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.week-label {
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 0.875rem;
+}
+
+.week-games {
+  color: #d1d5db;
+  font-size: 0.75rem;
+}
+
+.week-score-bar {
+  background: #f3f4f6;
+  height: 12px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.week-score-fill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.3s ease;
+}
+
+.week-score {
+  font-weight: 600;
+  color: #ffffff;
+  text-align: right;
+  font-size: 0.875rem;
+}
+
+/* Acciones rápidas */
+.actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.action-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1rem;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.action-btn:hover {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: rgba(16, 185, 129, 0.5);
+  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+}
+
+.action-btn.export {
+  border-color: #3b82f6;
+  color: #3b82f6;
+}
+
+.action-btn.export:hover {
+  background: #3b82f6;
+  color: white;
+}
+
+.action-btn.refresh {
+  border-color: #10b981;
+  color: #10b981;
+}
+
+.action-btn.refresh:hover {
+  background: #10b981;
+  color: white;
+}
+
+.action-btn.settings {
+  border-color: #f59e0b;
+  color: #f59e0b;
+}
+
+.action-btn.settings:hover {
+  background: #f59e0b;
+  color: white;
+}
+
+.action-btn.report {
+  border-color: #8b5cf6;
+  color: #8b5cf6;
+}
+
+.action-btn.report:hover {
+  background: #8b5cf6;
+  color: white;
+}
+
+/* Acciones rápidas */
+.quick-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dashboard-stats {
+    padding: 1rem;
+  }
+
+  .main-metrics {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .metric-card {
+    padding: 1.5rem;
+  }
+
+  .game-bar {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  .week-bar {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  .difficulty-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .difficulty-badges-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .difficulty-badge-circle {
+    width: 80px !important;
+    height: 80px !important;
+    font-size: 14px !important;
+  }
+
+  .badge-value {
+    font-size: 1.5rem !important;
+  }
+
+  .time-gauge-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .gauge-container {
+    max-width: 150px;
+    height: 100px;
+  }
+
+  .gauge-value {
+    font-size: 1.5rem !important;
+  }
+
+  .gauge-stats {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .actions-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  .quick-actions {
+    flex-direction: column;
+  }
+
+  .top-students-chart {
+    flex-direction: column;
+    align-items: center;
+    min-height: auto;
+    gap: 2rem;
+  }
+
+  .top-student-bar-container {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .vertical-bar-wrapper {
+    height: 150px;
+  }
+
+  .vertical-bar-container {
+    width: 80px;
+  }
+}

@@ -1,0 +1,110 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap");
+
+.main {
+  position: relative;
+  z-index: 10;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 40px;
+  font-family: "Fredoka", cursive;
+}
+
+/* Clase base unificada para las cards de bienvenida */
+.welcome-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 30px;
+  padding: 50px;
+  margin-bottom: 30px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+   transition: all 0.1s; 
+}
+
+
+/* Título específico de la card de bienvenida */
+.welcome-card h1 {
+  font-size: 60px;
+  color: white;
+  margin-bottom: 25px;
+  text-align: center;
+  text-shadow: 
+    -2px -2px 0 #7c3aed,
+    2px -2px 0 #7c3aed,
+    -2px 2px 0 #7c3aed,
+    2px 2px 0 #7c3aed,
+    -2px 0 0 #7c3aed,
+    2px 0 0 #7c3aed,
+    0 -2px 0 #7c3aed,
+    0 2px 0 #7c3aed;
+}
+
+/* Estilos base para párrafos en welcome-card */
+.welcome-card p {
+  font-size: 20px;
+  line-height: 2.5;
+  margin-top: 8px;
+  margin-bottom: 12px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Botón de "¡A JUGAR!" */
+.jugar-button {
+  background: linear-gradient(135deg, #4CAF50, #8BC34A);
+  color: #FDF5E6;
+  border: none;
+  padding: 14px 14px;
+  border-radius: 12px;
+  font-family: "Fredoka", cursive;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  display: block;
+  margin: 20px auto 0 auto;
+}
+
+.jugar-button:hover {
+  background: linear-gradient(135deg, #4CAF50, #8BC34A);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 0 20px rgba(138, 43, 226, 0.6);
+}
+
+.jugar-button:active {
+  transform: translateY(0) scale(1.02);
+}
+
+/* Títulos específicos dentro de welcome-card */
+.welcome-card h2 {
+  font-size: 30px;
+  color: white;
+  margin-top: 30px;
+  margin-bottom: 25px;
+  text-align: center;
+  text-shadow: 
+    -1.5px -1.5px 0 #7c3aed,
+    1.5px -1.5px 0 #7c3aed,
+    -1.5px 1.5px 0 #7c3aed,
+    1.5px 1.5px 0 #7c3aed,
+    -1.5px 0 0 #7c3aed,
+    1.5px 0 0 #7c3aed,
+    0 -1.5px 0 #7c3aed,
+    0 1.5px 0 #7c3aed;
+}
+
+.welcome-card h3 {
+  font-size: 24px;
+  text-align: center;
+  color: white;
+  text-shadow: 
+    -1.5px -1.5px 0 #7c3aed,
+    1.5px -1.5px 0 #7c3aed,
+    -1.5px 1.5px 0 #7c3aed,
+    1.5px 1.5px 0 #7c3aed,
+    -1.5px 0 0 #7c3aed,
+    1.5px 0 0 #7c3aed,
+    0 -1.5px 0 #7c3aed,
+    0 1.5px 0 #7c3aed;
+}

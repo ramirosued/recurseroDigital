@@ -1,0 +1,64 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=${NODE_ENV:-production}
+      - PORT=${PORT:-3000}
+      - DB_HOST=${DB_HOST:-postgres}
+      - DB_PORT=${DB_PORT:-5432}
+      - DB_NAME=${DB_NAME:-recurseroDigitalDB}
+      - DB_USER=${DB_USER:-admindb}
+      - DB_PASSWORD=${DB_PASSWORD:-recursero2025}
+      - JWT_SECRET=${JWT_SECRET:-tu-jwt-secret-super-seguro-prod-local}
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      - GEMINI_MODEL=${GEMINI_MODEL:-gemini-2.5-flash}
+    networks:
+      - recursero-network
+    depends_on:
+      - postgres
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:15
+    container_name: postgres-container-prod
+    restart: always
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-recurseroDigitalDB}
+      POSTGRES_USER: ${POSTGRES_USER:-admindb}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-recursero2025}
+      POSTGRES_ROOT_PASSWORD: ${POSTGRES_ROOT_PASSWORD:-123456}
+    ports:
+      - "5433:5432"  # Puerto diferente para evitar conflictos
+    volumes:
+      - postgres_data_prod:/var/lib/postgresql/data
+      - ./postgres-init:/docker-entrypoint-initdb.d
+    networks:
+      - recursero-network
+
+  frontend:
+    build:
+      context: ./frontend/recursero-digital
+      dockerfile: Dockerfile
+      args:
+        VITE_API_BASE_URL: http://backend:3000/api
+    ports:
+      - "5174:5173"  # Puerto diferente para evitar conflictos
+    depends_on:
+      - backend
+    networks:
+      - recursero-network
+    restart: unless-stopped
+
+
+networks:
+  recursero-network:
+    driver: bridge
+
+volumes:
+  backend_node_modules:
+  frontend_node_modules:
+  postgres_data_prod:

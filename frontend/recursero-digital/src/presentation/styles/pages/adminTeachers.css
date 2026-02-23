@@ -1,0 +1,241 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap');
+
+.admin-teachers {
+  padding: 2rem;
+  font-family: 'Fredoka', cursive;
+  background: rgb(231, 237, 239);
+  min-height: 100vh;
+  color: #333;
+}
+
+
+.teachers-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.cartas-docente {
+  background:#594a8f8a;  
+  padding: 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 8rem;
+}
+
+.cartas-docente:hover {
+  transform: translateY(-3px);
+}
+
+.cartas-docente h3 {
+  margin: 0 0 1rem 0;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.docente-numeros {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color:  #348267;
+}
+
+.teachers-content {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.teachers-filters {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 200px;
+}
+
+.filter-group label {
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.filter-group select,
+.filter-group input {
+  padding: 0.5rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 0.5rem;
+  font-family: 'Fredoka', cursive;
+  transition: border-color 0.2s ease;
+}
+
+.filter-group select:focus,
+.filter-group input:focus {
+  outline: none;
+  border-color: #4facfe;
+}
+
+.teachers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.5rem;
+}
+
+.teacher-card {
+  background: #f7fafc;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  border: 1px solid #e2e8f0;
+  transition: transform 0.2s ease;
+}
+
+.teacher-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.teacher-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.teacher-header h3 {
+  margin: 0;
+  color: #2d3748;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.teacher-status {
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.teacher-status.activo {
+  background: #c6f6d5;
+  color: #22543d;
+}
+
+.teacher-status.inactivo {
+  background: #fed7d7;
+  color: #742a2a;
+}
+
+.teacher-info {
+  margin-bottom: 1.5rem;
+}
+
+.teacher-info p {
+  margin: 0.5rem 0;
+  color: #4a5568;
+}
+
+.teacher-metrics {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.metric {
+  text-align: center;
+  flex: 1;
+  background:#594a8f21 ;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+}
+
+.metric-value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: black;
+}
+
+.metric-label {
+  font-size: 0.875rem;
+  color: #2d3748;
+  font-weight: 600;
+}
+
+.teacher-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.view-boton, .edit-boton, .courses-boton, .delete-boton, .activate-boton {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Fredoka', cursive;
+  font-size: 0.875rem;
+}
+
+.view-boton {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.edit-boton {
+  background: #348267;
+  color: white;
+}
+
+.courses-boton {
+  background: linear-gradient(135deg, #a8e6cf 0%, #7fcdcd 100%);
+  color: #2d3748;
+}
+
+.delete-boton, .activate-boton {
+  background: #594a8f8a ;
+  color: white;
+}
+
+.view-btn:hover, .edit-btn:hover, .courses-btn:hover, .delete-btn:hover, .activate-boton:hover {
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .admin-teachers {
+    padding: 1rem;
+  }
+  
+  .teachers-header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  .teachers-filters {
+    flex-direction: column;
+  }
+  
+  .teachers-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .teacher-actions {
+    grid-template-columns: 1fr;
+  }
+}

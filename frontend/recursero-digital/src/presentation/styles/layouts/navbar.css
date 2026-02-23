@@ -1,0 +1,210 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap");
+@import '../globals/backgrounds.css';
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+  font-family: "Fredoka", cursive;
+  position: relative;
+  padding: 0.3rem 0;
+  overflow: visible;
+}
+
+/* Asegurar que el navbar admin muestre las estrellas */
+.navbar.admin {
+  position: relative;
+  overflow: visible;
+}
+
+.navbar-tabs {
+  display: flex;
+  align-items: center;
+  gap: 15rem;
+  z-index: 1;
+  position: relative;
+}
+
+.tab-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px; /* Ancho fijo para todos los botones */
+  height: 50px; /* Alto fijo para todos los botones */
+  padding: 0 20px; /* Espaciado horizontal */
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(139, 92, 246, 0.3);
+  color: rgb(255, 255, 255);
+  border-radius: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Fredoka", cursive;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: center; /* Asegura que el texto esté centrado */
+  position: relative;
+  z-index: 2;
+}
+
+.tab-button:hover {
+  border-color: rgba(128, 246, 92, 0.6);
+  color: rgb(255, 255, 255);
+}
+
+.tab-button.active {
+  border-color: #80f65c;
+  color: white;
+  box-shadow: 0 4px 15px rgba(128, 246, 92, 0.4);
+}
+
+.tab-button:focus {
+  outline: none;
+  border-color: #80f65c;
+  box-shadow: 0 4px 15px rgba(128, 246, 92, 0.4);
+}
+
+.tab-button:active {
+  border-color: #80f65c;
+  box-shadow: 0 4px 15px rgba(128, 246, 92, 0.4);
+}
+
+.tab-button:focus:not(.active) {
+  border-color: rgba(128, 246, 92, 0.6);
+}
+
+/* Estilos específicos para navbar de docente */
+.navbar.docente .navbar-tabs {
+  gap: 8rem;
+}
+
+.navbar.docente .tab-button.active::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 2rem;
+  z-index: -1;
+  opacity: 0.8;
+}
+
+/* Animación especial para navbar de docente */
+.navbar.docente .tab-button.active {
+  animation: pulseDocente 3s ease-in-out infinite;
+}
+
+@keyframes pulseDocente {
+  0%, 100% { 
+    box-shadow: 0 8px 30px rgba(128, 246, 92, 0.5);
+  }
+  50% { 
+    box-shadow: 0 12px 40px rgba(128, 246, 92, 0.7);
+  }
+}
+
+/* Estilos específicos para navbar de alumno */
+.navbar.alumno .navbar-tabs {
+  gap: 15rem;
+}
+
+.navbar.admin .navbar-tabs {
+  gap: 5rem;
+}
+
+.navbar.alumno .tab-button, 
+.navbar.docente .tab-button,
+.navbar.admin .tab-button{
+  background: rgba(132, 105, 105, 0.1);
+  border: 2px solid rgba(139, 92, 246, 0.3);
+  color: rgb(255, 255, 255);
+  width: 200px;
+  height: 50px;
+}
+
+
+.navbar.admin .tab-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle,#80f65c4d, transparent);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease;
+  z-index: -1;
+}
+
+.navbar.alumno .tab-button:hover,
+.navbar.docente .tab-button:hover, 
+.navbar.admin .tab-button:hover {
+  border-color: #80f65c;
+  color: rgb(255, 255, 255);
+}
+
+.navbar.alumno .tab-button.active, 
+.navbar.navbar.docente .tab-button.active, 
+.navbar.admin .tab-button.active {
+  border-color: #80f65c;
+  color: white;
+  box-shadow: 0 4px 15px rgba(128, 246, 92, 0.4);
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .navbar-brand {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  .navbar-tabs {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8rem;
+  }
+
+  .navbar.docente .navbar-tabs,
+  .navbar.alumno .navbar-tabs, 
+  .navbar.admin .navbar-tabs {
+    gap: 2rem;
+  }
+
+  .tab-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    width: 180px;
+    height: 45px;
+  }
+}
+
+/* Asegurar que las estrellas se muestren en el navbar de admin */
+.navbar.admin.bg-space-admin {
+  position: relative;
+  overflow: hidden;
+}
+
+.navbar.admin.bg-stars-admin::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="stars-admin-nav" x="0" y="0" width="25" height="25" patternUnits="userSpaceOnUse"><circle cx="12" cy="12" r="1.5" fill="%238b5cf6" opacity="0.4"/><circle cx="6" cy="6" r="0.8" fill="%237c3aed" opacity="0.6"/><circle cx="18" cy="18" r="1.2" fill="%23a855f7" opacity="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23stars-admin-nav)"/></svg>');
+  pointer-events: none;
+  z-index: 0;
+  animation: twinkleAdminNav 12s ease-in-out infinite;
+}
+
+@keyframes twinkleAdminNav {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}

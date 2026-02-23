@@ -1,0 +1,13 @@
+{
+  "dev": {
+    "driver": "pg",
+    "host": "postgres",
+    "port": 5432,
+    "database": "recurseroDigitalDB",
+    "user": "admindb",
+    "password": "123456",
+    "schema": "public",
+    "migrationsTable": "pgmigrations"
+  }
+}
+
