@@ -1,4 +1,4 @@
-export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://recurserodigital-gzad.onrender.com/api';
+export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://recurserodigital-gzad.onrender.com';
 
 export const AUTH_ENDPOINTS = {
   LOGIN_STUDENT: '/login/student',
