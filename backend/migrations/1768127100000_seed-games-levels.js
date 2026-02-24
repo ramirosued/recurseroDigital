@@ -33,11 +33,11 @@ exports.up = (pgm) => {
       '{"min": 1000, "max": 9999, "color": "chocolate", "range": "1.000 al 9.999"}'::jsonb),
 
     -- Juego de Escala
-    ('level-escala-1', 'game-escala', 1, 'Vecinos Cercanos', 'Encuentra el anterior y posterior (+1 y -1)', 'Fácil', 5, 
+    ('level-escala-1', 'game-escala', 1, 'Vecinos Cercanos', 'Encuentra el anterior y posterior (-1 y +1)', 'Fácil', 5, 
       '{"min": 5, "max": 95, "operation": 1, "color": "blue", "range": "1 al 100"}'::jsonb),
-    ('level-escala-2', 'game-escala', 2, 'Saltos de 10', 'Encuentra el anterior y posterior (+10 y -10)', 'Intermedio', 5, 
+    ('level-escala-2', 'game-escala', 2, 'Saltos de 10', 'Encuentra el anterior y posterior (-10 y +10)', 'Intermedio', 5, 
       '{"min": 30, "max": 490, "operation": 10, "color": "green", "range": "20 al 500"}'::jsonb),
-    ('level-escala-3', 'game-escala', 3, 'Grandes Saltos', 'Encuentra el anterior y posterior (+100 y -100)', 'Avanzado', 5, 
+    ('level-escala-3', 'game-escala', 3, 'Grandes Saltos', 'Encuentra el anterior y posterior (-100 y +100)', 'Avanzado', 5, 
       '{"min": 300, "max": 900, "operation": 100, "color": "purple", "range": "200 al 1000"}'::jsonb),
 
     -- Juego de Escritura

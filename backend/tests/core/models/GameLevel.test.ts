@@ -212,7 +212,7 @@ describe('GameLevel Model', () => {
                 'game-escala',
                 2,
                 'Saltos de 10',
-                'Encuentra el anterior y posterior (+10 y -10)',
+                'Encuentra el anterior y posterior (-10 y +10)',
                 'Intermedio',
                 5,
                 config
