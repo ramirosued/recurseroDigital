@@ -29,6 +29,10 @@ app.use("/api/statistics", statisticsRoutes);
 app.use("/api/courses", courseRoutes);
 app.use("/api/games", gameRoutes);
 
+app.use((err: any, req: Request, res: Response, next: Function) => {
+    console.error("ERROR EN ROUTE:", err.stack); // imprime el error completo
+    res.status(500).json({ error: err.message || "Error interno del servidor" });
+});
 app.get("/", (req: Request, res: Response) => {
     res.send("Servidor Express funcionando correctamente");
 });
