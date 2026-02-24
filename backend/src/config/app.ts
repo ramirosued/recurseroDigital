@@ -11,13 +11,12 @@ import gameRoutes from "../delivery/routes/gameRoutes";
 const app: Application = express();
 
 app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    "https://recursero-digital-ten.vercel.app"
-  ],
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+    origin: (origin, callback) => {
+        callback(null, origin || true);
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 
