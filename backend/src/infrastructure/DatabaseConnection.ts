@@ -1,5 +1,4 @@
 import { Pool, PoolClient } from 'pg';
-import { databaseConfig } from '../config/database';
 import { spawn } from 'child_process';
 import path from 'path';
 
@@ -8,14 +7,29 @@ export class DatabaseConnection {
   private pool: Pool;
 
   private constructor() {
-    this.pool = new Pool(databaseConfig);
+    this.pool = new Pool({
+      connectionString: process.env.DATABASE_URL,
+      ssl: {
+        rejectUnauthorized: false
+      }
+    });
 
     this.pool.on('error', (err) => {
-      console.error('Error inesperado en el cliente PostgreSQL:', err);
+      console.error('Error inesperado en PostgreSQL:', err);
     });
   }
 
-  private async waitForDatabase(maxRetries: number = 10, delayMs: number = 2000): Promise<void> {
+  public static getInstance(): DatabaseConnection {
+    if (!DatabaseConnection.instance) {
+      DatabaseConnection.instance = new DatabaseConnection();
+    }
+    return DatabaseConnection.instance;
+  }
+
+  private async waitForDatabase(
+    maxRetries: number = 10,
+    delayMs: number = 2000
+  ): Promise<void> {
     for (let i = 0; i < maxRetries; i++) {
       try {
         const client = await this.pool.connect();
@@ -26,29 +40,23 @@ export class DatabaseConnection {
       } catch (error) {
         console.log(`Esperando PostgreSQL... (intento ${i + 1}/${maxRetries})`);
         if (i === maxRetries - 1) {
-          throw new Error(`No se pudo conectar a PostgreSQL después de ${maxRetries} intentos`);
+          throw new Error(
+            `No se pudo conectar a PostgreSQL después de ${maxRetries} intentos`
+          );
         }
-        await new Promise(resolve => setTimeout(resolve, delayMs));
+        await new Promise((resolve) => setTimeout(resolve, delayMs));
       }
     }
   }
 
-  public static getInstance(): DatabaseConnection {
-    if (!DatabaseConnection.instance) {
-      DatabaseConnection.instance = new DatabaseConnection();
-    }
-    return DatabaseConnection.instance;
-  }
-
   public async getClient(): Promise<PoolClient> {
-    return await this.pool.connect();
+    return this.pool.connect();
   }
 
   public async query(text: string, params?: any[]): Promise<any> {
     const client = await this.getClient();
     try {
-      const result = await client.query(text, params);
-      return result;
+      return await client.query(text, params);
     } finally {
       client.release();
     }
@@ -60,25 +68,25 @@ export class DatabaseConnection {
 
   private async runMigrations(): Promise<void> {
     return new Promise((resolve, reject) => {
-      let databaseUrl = `postgresql://${databaseConfig.user}:${databaseConfig.password}@${databaseConfig.host}:${databaseConfig.port}/${databaseConfig.database}`;
-
-      if (process.env.NODE_ENV === 'production') {
-        databaseUrl += '?sslmode=require';
-      }
-      
-      const migrateProcess = spawn('npx', [
-        'node-pg-migrate',
-        'up',
-        '-m',
-        path.join(__dirname, '../../migrations'),
-        '--database-url-var',
-        'DATABASE_URL'
-      ], {
-        env: { ...process.env, DATABASE_URL: databaseUrl },
-        shell: true
-      });
+      const migrateProcess = spawn(
+        'npx',
+        [
+          'node-pg-migrate',
+          'up',
+          '-m',
+          path.join(__dirname, '../../migrations')
+        ],
+        {
+          env: {
+            ...process.env,
+            DATABASE_URL: process.env.DATABASE_URL
+          },
+          shell: true
+        }
+      );
 
       let output = '';
+
       migrateProcess.stdout?.on('data', (data) => {
         output += data.toString();
         console.log(data.toString());
@@ -94,7 +102,11 @@ export class DatabaseConnection {
           console.log('Migraciones ejecutadas correctamente');
           resolve();
         } else {
-          reject(new Error(`Error al ejecutar migraciones. Código: ${code}\n${output}`));
+          reject(
+            new Error(
+              `Error al ejecutar migraciones. Código: ${code}\n${output}`
+            )
+          );
         }
       });
     });
@@ -102,14 +114,15 @@ export class DatabaseConnection {
 
   public async initializeTables(): Promise<void> {
     try {
+      console.log('Inicializando base de datos PostgreSQL...');
       await this.waitForDatabase();
 
       console.log('Ejecutando migraciones...');
       await this.runMigrations();
 
-      console.log('Tablas inicializadas correctamente en PostgreSQL');
+      console.log('Tablas inicializadas correctamente');
     } catch (error) {
-      console.error('Error al inicializar las tablas:', error);
+      console.error('Error al inicializar la base de datos:', error);
       throw error;
     }
   }
