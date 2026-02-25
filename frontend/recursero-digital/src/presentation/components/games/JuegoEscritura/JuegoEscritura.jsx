@@ -131,32 +131,25 @@ const JuegoEscritura = () => {
     };
 
     const handleDrop = (e, wordPairIndex) => {
-        e.preventDefault();
-        const draggedNumber = parseInt(e.dataTransfer.getData('text/plain'));
-        const targetWordPair = wordPairs[wordPairIndex];
-        const isCorrect = validateNumberWordPair(draggedNumber, targetWordPair.word);
-        
-        if (isCorrect) {
-            const currentNumber = dragAnswers[wordPairIndex];
-            if (currentNumber) {
-                setUsedNumbers(prev => {
-                    const newSet = new Set(prev);
-                    newSet.delete(currentNumber);
-                    return newSet;
-                });
-            }
-            
-            setUsedNumbers(prev => new Set([...prev, draggedNumber]));
-            
-            setDragAnswers(prev => ({
-                ...prev,
-                [wordPairIndex]: draggedNumber
-            }));
-        } else {
-            incrementAttempts();
-            setShowErrorPopup(true);
-        }
-    };
+    e.preventDefault();
+    const draggedNumber = parseInt(e.dataTransfer.getData('text/plain'));
+
+    const currentNumber = dragAnswers[wordPairIndex];
+    if (currentNumber) {
+        setUsedNumbers(prev => {
+            const newSet = new Set(prev);
+            newSet.delete(currentNumber);
+            return newSet;
+        });
+    }
+
+    setUsedNumbers(prev => new Set([...prev, draggedNumber]));
+
+    setDragAnswers(prev => ({
+        ...prev,
+        [wordPairIndex]: draggedNumber
+    }));
+};
     
     const handleNextLevel = useCallback(() => {
         if (currentLevel >= backendLevels.length - 1) {
